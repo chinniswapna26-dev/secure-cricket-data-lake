@@ -9,3 +9,6 @@ uploads/*
 *.zip
 static/qr_codes/
 data/
+cricket_users.db
+cricket_users_backup.db
+*.db
