@@ -122,9 +122,12 @@ def login():
                 admin_username = os.environ.get("ADMIN_USERNAME", "").strip()
 
                 if admin_username and username == admin_username:
-                    update_user_role(user["id"], "Administrator")
+                    updated = update_user_role(user["id"], "Administrator")
                     user = get_user(username)
-
+                    app.logger.info(
+                        "Admin promotion: updated=%s, role=%s",
+                        updated, user["role"] if user else "USER NOT FOUND"
+                    )
                 session.clear()
                 session["username"] = username
                 session["role"] = user["role"]
