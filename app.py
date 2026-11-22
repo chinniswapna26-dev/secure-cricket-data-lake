@@ -111,7 +111,6 @@ def login():
         mfa_code = request.form.get("mfa_code", "").strip()
 
         user = get_user(username)
-
         if user and verify_password(user, password):
             if not user["mfa_secret"]:
                 flash("MFA setup is required. Please contact the administrator.")
@@ -120,6 +119,12 @@ def login():
             if pyotp.TOTP(user["mfa_secret"]).verify(
                 mfa_code, valid_window=1
             ):
+                admin_username = os.environ.get("ADMIN_USERNAME", "").strip()
+
+                if admin_username and username == admin_username:
+                    update_user_role(user["id"], "Administrator")
+                    user = get_user(username)
+
                 session.clear()
                 session["username"] = username
                 session["role"] = user["role"]
