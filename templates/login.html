@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Secure Cricket Data Lake - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eaf0f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .login-box {
+            background: white;
+            padding: 35px;
+            width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #aaa;
+            text-align: center;
+        }
+        h2 { color: #17365d; }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        button {
+            width: 98%;
+            padding: 12px;
+            background: #17365d;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        a { color: #17365d; }
+        .message { color: #b00020; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <h2>Secure Cricket Data Lake</h2>
+        <p>Login to your account</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="message">{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        <form method="POST" action="/login">
+            <input type="text" name="username"
+                   placeholder="Username" required>
+
+            <input type="password" name="password"
+                   placeholder="Password" required>
+
+            <input type="text" name="mfa_code"
+                   placeholder="Six-digit MFA Code"
+                   inputmode="numeric" maxlength="6" required>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <p>New user? <a href="/register">Create an account</a></p>
+    </div>
+</body>
+</html>
+

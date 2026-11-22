@@ -1,0 +1,11 @@
+venv/
+.env
+__pycache__/
+*.pyc
+*.db
+*_qr.png
+*.backup
+uploads/*
+*.zip
+static/qr_codes/
+data/

@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cricket Analytics Reports</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+        }
+        header {
+            background: #17365d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 30px;
+        }
+        .report-box {
+            background: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ccc;
+        }
+        h2 {
+            color: #17365d;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background: #17365d;
+            color: white;
+        }
+        a {
+            display: inline-block;
+            background: #17365d;
+            color: white;
+            padding: 12px 18px;
+            margin-top: 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Secure Cricket Data Lake</h1>
+    <p>Cricket Analytics Reports</p>
+</header>
+
+<div class="container">
+
+    <div class="report-box">
+        <h2>Match Summary</h2>
+        <p>Player statistics from uploaded CSV data.</p>
+        <p>Total Players: {{ players|length }}</p>
+    </div>
+
+    <div class="report-box">
+        <h2>Player Performance</h2>
+
+        {% if players %}
+        <table>
+            <tr>
+                <th>Player</th>
+                <th>Team</th>
+                <th>Runs</th>
+                <th>Balls</th>
+                <th>Fours</th>
+                <th>Sixes</th>
+            </tr>
+
+            {% for player in players %}
+            <tr>
+                <td>{{ player.get('Player', '') }}</td>
+                <td>{{ player.get('Team', '') }}</td>
+                <td>{{ player.get('Runs', '') }}</td>
+                <td>{{ player.get('Balls', '') }}</td>
+                <td>{{ player.get('Fours', '') }}</td>
+                <td>{{ player.get('Sixes', '') }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        {% else %}
+        <p>No CSV data available. Please upload a cricket dataset first.</p>
+        {% endif %}
+    </div>
+    <a href="/download-report">Download Report</a>
+    <a href="/dashboard">Back to Dashboard</a>
+
+</div>
+
+</body>
+</html>
+

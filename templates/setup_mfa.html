@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Set Up MFA - Secure Cricket Data Lake</title>
+</head>
+<body style="font-family: Arial; text-align: center; background: #eaf0f6; padding: 40px;">
+    <h2>Set Up Multi-Factor Authentication</h2>
+    <p>Scan this QR code using Google Authenticator or Microsoft Authenticator.</p>
+
+    <img src="{{ url_for('static', filename=qr_file) }}" alt="MFA QR Code">
+
+    <p>Enter the six-digit code from your authenticator app when logging in.</p>
+    <p><a href="/login">Go to Login</a></p>
+</body>
+</html>

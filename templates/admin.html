@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management - Secure Cricket Data Lake</title>
+</head>
+<body style="font-family: Arial; background: #eaf0f6; padding: 30px;">
+    <h2>User Management</h2>
+    <p>Welcome, Administrator!</p>
+
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endwith %}
+
+    <table border="1" cellpadding="10" cellspacing="0" style="background:white;">
+        <tr>
+            <th>Username</th>
+            <th>Current Role</th>
+            <th>Change Role</th>
+        </tr>
+
+        {% for user in users %}
+        <tr>
+            <td>{{ user.username }}</td>
+            <td>{{ user.role }}</td>
+            <td>
+                {% if user.role != "Administrator" %}
+                <form method="POST" action="/admin/update-role">
+                    <input type="hidden" name="user_id" value="{{ user.id }}">
+                    <select name="role">
+                        <option>Data Analyst</option>
+                        <option>Coach</option>
+                        <option>Read-only User</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+                {% else %}
+                    Administrator account
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <p><a href="/dashboard">Back to Dashboard</a></p>
+    <p><a href="/logout">Logout</a></p>
+</body>
+</html>

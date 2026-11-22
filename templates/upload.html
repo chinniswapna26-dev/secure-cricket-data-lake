@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Cricket Match Data</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+        }
+        header {
+            background: #17365d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            width: 420px;
+            max-width: 85%;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px #aaa;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            box-sizing: border-box;
+        }
+        button {
+            background: #17365d;
+            color: white;
+            padding: 12px;
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+        a {
+            color: #17365d;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Secure Cricket Data Lake</h1>
+    <p>Upload Match Data</p>
+</header>
+
+<div class="container">
+    <h2>Upload Cricket Dataset</h2>
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+
+        <label>Match Name</label>
+        <input type="text" name="match_name"
+               placeholder="Enter match name" required>
+
+        <label>Data Category</label>
+        <select name="category" required>
+            <option value="">Select Category</option>
+            <option value="Scorecard">Scorecard</option>
+            <option value="Player Statistics">Player Statistics</option>
+            <option value="Team Statistics">Team Statistics</option>
+        </select>
+
+        <label>Select CSV File</label>
+        <input type="file" name="file" accept=".csv" required>
+
+        <button type="submit">Upload Dataset</button>
+    </form>
+
+    <a href="/dashboard">Back to Dashboard</a>
+</div>
+
+</body>
+</html>

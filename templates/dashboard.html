@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cricket Statistics Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            margin: 0;
+        }
+        header {
+            background: #17365d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            padding: 25px;
+        }
+        .cards {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 160px;
+            box-shadow: 0 2px 8px #ccc;
+            text-align: center;
+        }
+        .card h2 {
+            color: #17365d;
+        }
+        a {
+            display: inline-block;
+            background: #17365d;
+            color: white;
+            padding: 12px 18px;
+            margin: 10px 10px 0 0;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .welcome {
+            margin-bottom: 25px;
+        }
+        .user-info {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Secure Cricket Data Lake</h1>
+    <p>Cricket Statistics and Analytics Dashboard</p>
+</header>
+
+<div class="container">
+
+    <div class="user-info">
+        <h3>Logged-in User: {{ username }}</h3>
+        <p>Role: <strong>{{ role }}</strong></p>
+    </div>
+
+    <div class="welcome">
+        <h2>Welcome to the Dashboard</h2>
+        <p>Manage cricket match datasets, scorecards and analytics reports.</p>
+    </div>
+
+    <div class="cards">
+        <div class="card">
+            <h2>3</h2>
+            <p>Sample Matches</p>
+        </div>
+
+        <div class="card">
+            <h2>2</h2>
+            <p>Sample Teams</p>
+        </div>
+
+        <div class="card">
+            <h2>3</h2>
+            <p>Data Categories</p>
+        </div>
+    </div>
+
+    <h2>Data Lake Management</h2>
+
+    {% if role == "Data Analyst" %}
+        <a href="/upload">Upload Match Data</a>
+    {% endif %}
+
+    <a href="/reports">View Analytics Reports</a>
+
+    {% if role == "Administrator" %}
+        <a href="/admin">User Management</a>
+    {% endif %}
+
+    <a href="/logout">Logout</a>
+
+</div>
+</body>
+</html>
